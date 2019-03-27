@@ -173,8 +173,8 @@
 					"recurrence": {
 						"frequency": "Day",
 						"interval": 1,
-						"startTime": "2019-03-27T16:37:00.000Z",
-						"endTime": "2019-03-27T16:39:00.000Z",
+						"startTime": "2019-03-27T16:41:00.000Z",
+						"endTime": "2019-03-28T16:39:00.000Z",
 						"timeZone": "UTC",
 						"schedule": {}
 					}
