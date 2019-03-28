@@ -1,0 +1,35 @@
+{
+	"name": "OutputSqlDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "PersonID",
+				"type": "Int32"
+			},
+			{
+				"name": "LastName",
+				"type": "String"
+			},
+			{
+				"name": "FirstName",
+				"type": "String"
+			},
+			{
+				"name": "Address1",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Persons]"
+		}
+	}
+}

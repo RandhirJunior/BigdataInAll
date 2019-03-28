@@ -1,0 +1,51 @@
+{
+	"name": "pipeline2",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopyFromBlobToSql",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "BlobSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"Prop_0": "PersonID",
+							"Prop_1": "LastName",
+							"Prop_2": "FirstName",
+							"Prop_3": "Address1",
+							"Prop_4": "City"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceBlobDataset",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OutputSqlDataset",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	}
+}
