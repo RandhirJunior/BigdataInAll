@@ -15,11 +15,23 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
 		},
+		"AzureStorageLinkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureStorageLinkedService'"
+		},
 		"AzureBlob1_properties_typeProperties_fileName": {
 			"type": "string",
 			"defaultValue": "sales"
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "mydata"
+		},
+		"SourceBlobDataset_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "myblobfile.txt"
+		},
+		"SourceBlobDataset_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "mydata"
 		},
@@ -56,11 +68,20 @@
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
+					"AzureStorageLinkedService_connectionString": {
+						"value": "[parameters('AzureStorageLinkedService_connectionString')]"
+					},
 					"AzureBlob1_properties_typeProperties_fileName": {
 						"value": "[parameters('AzureBlob1_properties_typeProperties_fileName')]"
 					},
 					"AzureBlob1_properties_typeProperties_folderPath": {
 						"value": "[parameters('AzureBlob1_properties_typeProperties_folderPath')]"
+					},
+					"SourceBlobDataset_properties_typeProperties_fileName": {
+						"value": "[parameters('SourceBlobDataset_properties_typeProperties_fileName')]"
+					},
+					"SourceBlobDataset_properties_typeProperties_folderPath": {
+						"value": "[parameters('SourceBlobDataset_properties_typeProperties_folderPath')]"
 					}
 				}
 			},

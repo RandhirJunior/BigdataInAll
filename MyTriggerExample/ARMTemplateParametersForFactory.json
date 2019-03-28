@@ -11,10 +11,19 @@
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
+		"AzureStorageLinkedService_connectionString": {
+			"value": ""
+		},
 		"AzureBlob1_properties_typeProperties_fileName": {
 			"value": "sales"
 		},
 		"AzureBlob1_properties_typeProperties_folderPath": {
+			"value": "mydata"
+		},
+		"SourceBlobDataset_properties_typeProperties_fileName": {
+			"value": "myblobfile.txt"
+		},
+		"SourceBlobDataset_properties_typeProperties_folderPath": {
 			"value": "mydata"
 		}
 	}
