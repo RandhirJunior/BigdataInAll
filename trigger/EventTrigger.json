@@ -1,0 +1,22 @@
+{
+	"name": "EventTrigger",
+	"properties": {
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline2",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/newdata/",
+			"scope": "/subscriptions/d315d379-6935-4bee-83d8-76b347471ab2/resourceGroups/MyNewGroup/providers/Microsoft.Storage/storageAccounts/mynewstorageaccount1265",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

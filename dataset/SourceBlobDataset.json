@@ -38,8 +38,8 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "myblobfile.txt",
-			"folderPath": "mydata"
+			"fileName": "@triggerBody().fileName",
+			"folderPath": "@triggerBody().folderPath"
 		}
 	}
 }
