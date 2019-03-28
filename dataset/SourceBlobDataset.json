@@ -38,8 +38,14 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "@triggerBody().fileName",
-			"folderPath": "@triggerBody().folderPath"
+			"fileName": {
+				"value": "@triggerBody().fileName",
+				"type": "Expression"
+			},
+			"folderPath": {
+				"value": "@triggerBody().folderPath",
+				"type": "Expression"
+			}
 		}
 	}
 }
