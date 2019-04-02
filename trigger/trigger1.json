@@ -2,14 +2,6 @@
 	"name": "trigger1",
 	"properties": {
 		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "pipeline2",
-					"type": "PipelineReference"
-				}
-			}
-		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
 			"blobPathBeginsWith": "/newdata/",
