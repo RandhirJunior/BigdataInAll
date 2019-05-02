@@ -1,0 +1,126 @@
+1. Supported file formats -csv,text,json,orc,parquest.
+2. We can also write data to 3rd party supported file formats such as avro.
+3. Data can be written to hive tables as well.
+4. We can aslo connect to relational databases over JDBC and save out output into remote relational databases.
+5. We can aslo connect to any 3rd party databases using relevant plugin and preserve data over there .
+
+#to save json data
+orders.write.format('json').save('/users/json_format')
+
+orders.write.json('/users/json_format',mode='append')
+
+
+#to write data in databases.
+
+table='retail_export.orders_export'
+
+orders.write.format('jdbc').option('url'.'jdbc:mysql://ms.itversity.com').option('dbtable','retail_export.orders_export').\
+                           option('user','retail_user').\
+						   option('password','itversity').\
+						   save(mode='append')
+						   
+orders.write.jdbc("jdbc:mysql://ms.itversity.com",table,mode='append',properties={"user":"retail_user","password":"itversity "})	
+
+#to write data in hive table
+orders.write.saveAsTable
+
+orders.write.insertInto('hive_table_name')
+
+					   
+#---------------------------spark.read-----------------------------------
+1. Support files formats -csv,text,json,orc,parquest etc.
+2. We can also read data directly from hive tables.
+3. We can aslo read data from 3rd party supported file formats such as avro.
+4. JDBC-to read data from relational databases.
+5. There is genic API called format which can be used in conjunction with option to pass relevant arguments and then load data from either or over JDBC.
+ 		
+		orders=spark.read.format('json').load('/users/orders_json')
+		
+		or
+		
+		orders=spark.read.json('/users/orders_json')
+		
+#  to read data from JDBC-----------------------
+    orders=spark.read.\
+            format('jdbc').\
+            option('url','jdbc:mysql://ms.itversity.com').\
+            option('dbtable','retail_export.orders_export').\
+            option('user','retail_user').\
+            option('password','itversity').\
+            load()
+
+or
+table='retail_export.orders_export'
+orders=spark.read.\
+       jdbc("jdbc:mysql://ms.itversity.com",table,properties={"user":"retail_user","password":"itversity"})			
+		
+orders.show()
+orders.printSchema()
+
+# to read data from HIVE table---------------------------------
+
+orders=spark.read.\
+       format('hive').\
+       table('database.hive_table_name')
+
+or
+
+orders=spark.read.table('database.hive_table_name')	  
+
+
+#------------------Supported File Formats-------------------------------------------------- 
+         1. text -using text (fixed length )		
+		 
+# To save data in csv format------------------
+
+   orders.write.format('csv').save('/users/orders_csv')
+    or
+   orders.write.csv('/users/orders_csv')
+
+#To read data from csv file-------------------------
+
+orders_read=spark.read.format('csv').load('/user/orders_csv').toDF('order_id','order_date','order_cutomer_id','order_status')
+
+or
+
+orders_read=spark.read.csv('/user/orders_csv').toDF('order_id','order_date','order_cutomer_id','order_status')
+
+#---------------For avro files we need to set jar first.---------------
+ pyspark --master yarn --conf spark.ui.port=12901 --package com.databricks:spark-avro_2.11:4.0.0
+ 
+  #To write avro data 
+ orders.write.format('com.databricks.spark.avro').save('/users/orders_avro')
+ 
+  #To read avro data
+ orders_avro=spark.read.format('com.databricks.spark.avro').load('/users/orders_avro') 
+ 
+ 
+ #-----------------Processing text data with custom delimiters------------------------
+ Docs-   https://hadoop.apache.org/docs/stable/api/index.html
+ 
+#Data persistance--------Persisting or Caching DataFrames---
+ orders.cache -----it will cache data into executors memroy and keep data into partitions.
+ 
+ 1. By default data will be streamed as data frames to exector tasks as data being processed.
+ 2. Here is what will happen when data is read into executor task.
+     .Deserialize into object.
+	 .Stream into memory.
+	 .Process data by executor task by applying logic.
+	 .Flush deserialized objects from memory as executor tasks are terminated.
+ 3. Some times we might have to read same data multiple times for processing with in the same 
+    job.By default every time data need to be deserialized and submitted by exector tasks for 
+    processing .
+ 4. To avaoid deserializing into java objects when same data have to be read multiples times we can
+    leverage caching.
+ 5. There are two methods persist and cache.By default with data frames caching will be done as MEMORY_AND_DISK from Spark 2.
+ 6. cache is shorthand method for persist at MEMORY_AND_DISK.
+ 7. This is what happens when we cache Data Frame.
+     1. Caching will be done only when data is read at least once for processing.
+     2. Each record will be deserialized into onject.
+     3.	These deserialized objects will be cached in memory as long as they fit.
+     4. If not, deserialized objects will be spilled out to disk.
+  	 
+ 
+ 
+   
+		
