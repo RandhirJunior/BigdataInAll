@@ -24,7 +24,7 @@ list(range(1,10))
 
 #[1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-----------------------------------
+#----------------------------------
 from operator import add
 ordeItems=sc.textFile('dbfs:/FileStore/tables/orderitems.txt')
 orderItemMap=ordeItems.map(lambda oi:(int(oi.split(",")[1]),float(oi.split(",")[4])))
@@ -37,7 +37,7 @@ ordeItems=sc.textFile('dbfs:/FileStore/tables/orderitems.txt')
 orderItemMap=ordeItems.map(lambda oi:(int(oi.split(",")[1]),float(oi.split(",")[4])))
 orderItemSum=orderItemMap.reduceByKey(lambda x,y:x+y)
 for i in orderItemSum.take(10):print(i)
--------------------------------------
+#-------------------------------------
 
 
 
