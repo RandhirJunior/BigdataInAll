@@ -263,7 +263,7 @@ order_items1=spark.read.jdbc("jdbc:mysql://ms.itversity.com",
 							
 order_items1.rdd.getNumPartitions()
 							
-----------------------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------------------
 from pyspark.sql.functions import *
 
 order_items=spark.read.jdbc("jdbc:mysql://ms.itversity.com",
@@ -289,15 +289,15 @@ order_items.select(order_items.order_id,order_items.order_date,order_items.order
 order_items.select(order_items.order_id,date_format(order_items.order_date,'YYY/MM'),order_items.order_status).show()
 
 order_items.select('*').show()
--------------------------------------------------------withColumn(to gets all feilds along with tranformed filed)-------------------------------------------------------------------------------------------------
+#-------------------------------------------------------withColumn(to gets all feilds along with tranformed filed)-------------------------------------------------------------------------------------------------
 
 order_items.withColumn('order_status_old',lower(order_items.order_status)).show()
                         alisa name,actual column name
-------------------------------------------------------------selectExpr-------------------------------------------------------------------
+#------------------------------------------------------------selectExpr-------------------------------------------------------------------
 
 order_items.selectExpr("date_format(order_date,'YYYMM') as d_m").show()
 
------------------------------------------------------------Filtering the data -------------------------------------------------------------------------------
+#-----------------------------------------------------------Filtering the data -------------------------------------------------------------------------------
 
 order_items.filter(order_items.order_status=='COMPLETE').show()
 
@@ -317,10 +317,10 @@ order_items.where("order_status in ('COMPLETE','CLOSED') and order_date like '20
 #order on every of 1st of month
 order_items.where("date_format(order_date,'dd')='01'").show()
 
--------------------------------------------------ORDER_ITEMS TABLE-------------------------------------------------------------------
+#-------------------------------------------------ORDER_ITEMS TABLE-------------------------------------------------------------------
 
 
---------------------------------------------JOINING THE DATASETS-------------------------------------------------------------------
+#--------------------------------------------JOINING THE DATASETS-------------------------------------------------------------------
 from pyspark.sql.functions import *
 
 order_items=spark.read.jdbc("jdbc:mysql://ms.itversity.com",
