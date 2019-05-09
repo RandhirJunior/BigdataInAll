@@ -1,5 +1,5 @@
-. Can compress to most of the logrithms(bzip2,deflate,uncompressed,lz4,gzip,snappy,none	)
-. use option on spark.write before csv-
+# Can compress to most of the logrithms(bzip2,deflate,uncompressed,lz4,gzip,snappy,none	)
+# use option on spark.write before csv-
      df.write.option("codec","gzip").csv("<PATH>")
 	 
 	 
