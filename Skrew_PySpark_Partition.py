@@ -26,3 +26,6 @@ dfRepart.repartition(2)
   
   
   
+While you are create Data Lake out of Azure, HDFS or AWS you need to understand how to partition your data at rest (File system/disk), PySpark partitionBy() and repartition() help you partition the data and eliminating the Data Skew on your large datasets.
+
+Hope this give you better idea on partitions in PySpark.
